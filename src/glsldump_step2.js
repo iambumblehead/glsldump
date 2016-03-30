@@ -1,7 +1,9 @@
 // Filename: glsldump_step2.js  
-// Timestamp: 2016.03.30-00:20:17 (last modified)
+// Timestamp: 2016.03.30-15:46:48 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>  
 
+
+const glsldump_load = require('./glsldump_load');
 
 typeof require('sylvester/sylvester.src'),
 typeof require('./glutils');
@@ -26,31 +28,60 @@ const glsldump = module.exports = (o => {
 
     canvas = canvaselem;
     
-    o.initWebGL(canvas);      // Initialize the GL context
+    o.initWebGL(canvas);
 
     // Only continue if WebGL is available and working
-
+    
     if (gl) {
-      gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
-      gl.clearDepth(1.0);                 // Clear everything
-      gl.enable(gl.DEPTH_TEST);           // Enable depth testing
-      gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
+      glsldump_load.getshaderarr([
+        './src/shader/step2.frag',
+        './src/shader/step2.vert'
+      ], gl, (err, [fragshader, vertshader]) => {
+        shaderProgram = gl.createProgram();
+        gl.attachShader(shaderProgram, vertshader);
+        gl.attachShader(shaderProgram, fragshader);
+        gl.linkProgram(shaderProgram);
 
-      // Initialize the shaders; this is where all the lighting for the
-      // vertices and so forth is established.
+        // If creating the shader program failed, alert
 
-      o.initShaders();
+        if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+          alert("Unable to initialize the shader program.");
+        }
 
-      // Here's where we call the routine that builds all the objects
-      // we'll be drawing.
+        gl.useProgram(shaderProgram);
 
-      o.initBuffers();
+        vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+        gl.enableVertexAttribArray(vertexPositionAttribute);
 
-      // Set up to draw the scene periodically.
+        /////////////////////////// added above
+        ////////////////////////////////////////
+        
 
-      o.drawScene();
-      //setInterval(o.drawScene, 15);
+        
+        
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
+        gl.clearDepth(1.0);                 // Clear everything
+        gl.enable(gl.DEPTH_TEST);           // Enable depth testing
+        gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
+
+        // Initialize the shaders; this is where all the lighting for the
+        // vertices and so forth is established.
+
+        //o.initShaders();
+
+        // Here's where we call the routine that builds all the objects
+        // we'll be drawing.
+
+        o.initBuffers();
+
+        // Set up to draw the scene periodically.
+
+        o.drawScene();
+
+        //setInterval(o.drawScene, 15);
+      });
     }
+
   };
 
   //
@@ -151,6 +182,9 @@ const glsldump = module.exports = (o => {
   // Initialize the shaders, so WebGL knows how to light our scene.
   //
   o.initShaders = () => {
+    // here get shader...
+    // http://stackoverflow.com/questions/14219947/why-do-shaders-have-to-be-in-html-file-for-webgl-program
+    
     var fragmentShader = o.getShader(gl, "shader-fs");
     var vertexShader = o.getShader(gl, "shader-vs");
 
@@ -173,65 +207,6 @@ const glsldump = module.exports = (o => {
     gl.enableVertexAttribArray(vertexPositionAttribute);
   };
 
-  //
-  // getShader
-  //
-  // Loads a shader program by scouring the current document,
-  // looking for a script with the specified ID.
-  //
-  o.getShader = (gl, id) => {
-    var shaderScript = document.getElementById(id);
-
-    // Didn't find an element with the specified ID; abort.
-
-    if (!shaderScript) {
-      return null;
-    }
-
-    // Walk through the source element's children, building the
-    // shader source string.
-
-    var theSource = "";
-    var currentChild = shaderScript.firstChild;
-
-    while(currentChild) {
-      if (currentChild.nodeType == 3) {
-        theSource += currentChild.textContent;
-      }
-
-      currentChild = currentChild.nextSibling;
-    }
-
-    // Now figure out what type of shader script we have,
-    // based on its MIME type.
-
-    var shader;
-
-    if (shaderScript.type == "x-shader/x-fragment") {
-      shader = gl.createShader(gl.FRAGMENT_SHADER);
-    } else if (shaderScript.type == "x-shader/x-vertex") {
-      shader = gl.createShader(gl.VERTEX_SHADER);
-    } else {
-      return null;  // Unknown shader type
-    }
-
-    // Send the source to the shader object
-
-    gl.shaderSource(shader, theSource);
-
-    // Compile the shader program
-
-    gl.compileShader(shader);
-
-    // See if it compiled successfully
-
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      alert("An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader));
-      return null;
-    }
-
-    return shader;
-  };
 
   //
   // Matrix utility functions

@@ -8,9 +8,14 @@ dump files for [glsl experimentation][0].
 
 ------------------------------------------------
 
+DONE
+
+ * xhr load of vert and frag sources
+
 TODO
 
- * :) xhr load vert and frag sources
+ * mock xhr requests at test directory
+ * convert frag loader to use rxjs
 
 ------------------------------------------------
 
