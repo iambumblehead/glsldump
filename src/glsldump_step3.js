@@ -1,18 +1,18 @@
-// Filename: glsldump_step2.js  
-// Timestamp: 2016.03.30-17:48:05 (last modified)
+// Filename: glsldump_step3.js  
+// Timestamp: 2016.03.30-18:00:13 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>  
-
 
 const glsldump_load = require('./glsldump_load');
 
 typeof require('sylvester/sylvester.src'),
 typeof require('./glutils');
 
-
-const glsldump_step2 = module.exports = (o => {
+const glsldump_step3 = module.exports = (o => {
+  var squareVerticesColorBuffer;
   var squareVerticesBuffer;
   var mvMatrix;
   var vertexPositionAttribute;
+  var vertexColorAttribute;
   var perspectiveMatrix;
 
   //
@@ -29,8 +29,8 @@ const glsldump_step2 = module.exports = (o => {
       // Initialize the shaders; this is where all the lighting for the
       // vertices and so forth is established.      
       glsldump_load.getshaderarr(gl, [
-        './src/shader/step2.frag',
-        './src/shader/step2.vert'
+        './src/shader/step3.frag',
+        './src/shader/step3.vert'
       ], (err, [fragshader, vertshader]) => {
         shaderProgram = gl.createProgram();
         gl.attachShader(shaderProgram, vertshader);
@@ -47,6 +47,10 @@ const glsldump_step2 = module.exports = (o => {
 
         vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
         gl.enableVertexAttribArray(vertexPositionAttribute);
+
+        vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColor");
+        gl.enableVertexAttribArray(vertexColorAttribute);
+        
         
         gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
         gl.clearDepth(1.0);                 // Clear everything
@@ -110,8 +114,24 @@ const glsldump_step2 = module.exports = (o => {
     // Now pass the list of vertices into WebGL to build the shape. We
     // do this by creating a Float32Array from the JavaScript array,
     // then use it to fill the current vertex buffer.
-
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+    var colors = [
+      1.0,  1.0,  1.0,  1.0,    // white
+      1.0,  0.0,  0.0,  1.0,    // red
+      0.0,  1.0,  0.0,  1.0,    // green
+      0.0,  0.0,  1.0,  1.0     // blue
+    ];
+
+    squareVerticesColorBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesColorBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);    
+
+    // Now pass the list of vertices into WebGL to build the shape. We
+    // do this by creating a Float32Array from the JavaScript array,
+    // then use it to fill the current vertex buffer.
+
+  
   };
 
   //
@@ -146,6 +166,12 @@ const glsldump_step2 = module.exports = (o => {
 
     gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesBuffer);
     gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
+
+    
+    gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesColorBuffer);
+    gl.vertexAttribPointer(vertexColorAttribute, 4, gl.FLOAT, false, 0, 0);
+
+    
     o.setMatrixUniforms(gl, shaderProgram);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   };
@@ -174,5 +200,5 @@ const glsldump_step2 = module.exports = (o => {
   };
 
   return o;
-
+  
 })({});
