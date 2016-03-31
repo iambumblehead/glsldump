@@ -1,5 +1,5 @@
 // Filename: glsldump_load.js  
-// Timestamp: 2016.03.30-16:43:20 (last modified)
+// Timestamp: 2016.03.30-17:12:48 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>  
 //
 // fragment loader: glsl|vert|frag|geom
@@ -46,7 +46,7 @@ const glsldump_load = module.exports = (o => {
     } else if (extn === 'frag') {
       shader = gl.createShader(gl.FRAGMENT_SHADER);
     }
-
+    
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
     
@@ -57,7 +57,7 @@ const glsldump_load = module.exports = (o => {
     return shader;    
   };
   
-  o.getshaderarr = (patharr, gl, fn) => {
+  o.getshaderarr = (gl, patharr, fn) => {
     o.getsourcearr(patharr, fn, (path, source) => (
       o.getshader(gl, path, source)
     ));
