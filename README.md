@@ -36,7 +36,7 @@ Other,
 [2]: http://joshua.smcvt.edu/linalg.html/book.pdf
 [4]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step1.js "step1"
 [5]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step2.js "step2"
-[5]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step3.js "step3"
+[6]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step3.js "step3"
 
 <!--
 https://github.com/codecruzer/webgl-shader-loader-js
