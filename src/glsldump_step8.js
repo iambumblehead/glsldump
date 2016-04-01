@@ -1,9 +1,9 @@
 // Filename: glsldump_step8.js  
-// Timestamp: 2016.04.01-01:24:50 (last modified)
+// Timestamp: 2016.04.01-02:12:21 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
 //
-// Lighting in WebGL
-// https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Lighting_in_WebGL
+// Animating textures in WebGL
+// https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Animating_textures_in_WebGL
 
 const glsldump_load = require('./glsldump_load');
 

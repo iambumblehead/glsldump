@@ -1,5 +1,5 @@
 // Filename: glsldump_aframe1.js  
-// Timestamp: 2016.04.01-00:32:40 (last modified)
+// Timestamp: 2016.04.01-01:27:10 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
 //
 // commissioned project that uses a-frame: http://www.360syria.com/

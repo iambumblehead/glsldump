@@ -18,7 +18,7 @@ dump files for [glsl experimentation][0].
 other,
 
  1. [Mozilla A-frame][20] (npm download for this is _big_)
-
+ 2. https://pomax.github.io/bezierinfo/
 
 ------------------------------------------------
 
