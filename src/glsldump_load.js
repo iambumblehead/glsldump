@@ -1,8 +1,17 @@
 // Filename: glsldump_load.js  
-// Timestamp: 2016.03.30-17:12:48 (last modified)
+// Timestamp: 2016.03.31-22:46:54 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>  
 //
-// fragment loader: glsl|vert|frag|geom
+// fragment loader: vert|frag
+//
+// all vert definitions define `gl_Position`,
+// all frag definitions define `gl_FragColor`
+//
+// verify shader via path extension should be removed.
+// each shader composed of minimum one vert and one frag,
+//
+//   http://www.html5rocks.com/en/tutorials/webgl/shaders/
+//   http://webglfundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html
 
 const superagent = require('superagent'),
       rxjs = require('rxjs');

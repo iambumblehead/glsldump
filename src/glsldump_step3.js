@@ -1,6 +1,9 @@
 // Filename: glsldump_step3.js  
-// Timestamp: 2016.03.30-18:00:13 (last modified)
-// Author(s): bumblehead <chris@bumblehead.com>  
+// Timestamp: 2016.03.31-22:51:56 (last modified)
+// Author(s): bumblehead <chris@bumblehead.com>
+//
+// Using shaders to apply color in WebGL
+// https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Using_shaders_to_apply_color_in_WebGL
 
 const glsldump_load = require('./glsldump_load');
 

@@ -1,6 +1,9 @@
 // Filename: glsldump_step1.js  
-// Timestamp: 2016.03.29-23:43:21 (last modified)
+// Timestamp: 2016.03.31-22:51:32 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
+//
+// Getting started with WebGL
+// https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
 
 var glsldump_step1 = module.exports = (o => {
   
