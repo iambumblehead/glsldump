@@ -10,14 +10,14 @@ dump files for [glsl experimentation][0].
  3. [Using shaders to apply color in WebGL][6]
  4. [Animating objects with WebGL][7]
  5. [Creating 3D objects using WebGL][8]
- 6. Using Textures in WebGL
- 7. Lighting in WebGL
+ 6. [Using Textures in WebGL][9]
+ 7. [Lighting in WebGL][10]
  8. Animating textures in WebGL 
 
 
 other,
 
- 1. [Mozilla A-frame][10] (npm download for this is _big_)
+ 1. [Mozilla A-frame][20] (npm download for this is _big_)
 
 
 ------------------------------------------------
@@ -52,8 +52,10 @@ Other,
 [6]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step3.js "step3"
 [7]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step4.js "step4"
 [8]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step5.js "step5"
+[9]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step6.js "step6"
+[10]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step7.js "step7"
 
-[10]: https://aframe.io/ "mozilla a-frame"
+[20]: https://aframe.io/ "mozilla a-frame"
 <!--
 https://github.com/codecruzer/webgl-shader-loader-js
 https://github.com/MarkusSprunck/webgl-hello-world
