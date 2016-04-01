@@ -12,7 +12,7 @@ dump files for [glsl experimentation][0].
  5. [Creating 3D objects using WebGL][8]
  6. Using Textures in WebGL
  7. Lighting in WebGL
- 7. Animating textures in WebGL 
+ 8. Animating textures in WebGL 
 
 
 other,
