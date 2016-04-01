@@ -12,7 +12,7 @@ dump files for [glsl experimentation][0].
  5. [Creating 3D objects using WebGL][8]
  6. [Using Textures in WebGL][9]
  7. [Lighting in WebGL][10]
- 8. Animating textures in WebGL 
+ 8. [Animating textures in WebGL][11] ([addl. download][12] required)
 
 
 other,
@@ -54,9 +54,16 @@ Other,
 [8]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step5.js "step5"
 [9]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step6.js "step6"
 [10]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step7.js "step7"
+[11]: https://github.com/iambumblehead/glsldump/blob/master/src/glsldump_step8.js "step8"
+[12]: http://mdn.github.io/webgl-examples/tutorial/sample8/Firefox.ogv "Firefox.ogv"
 
 [20]: https://aframe.io/ "mozilla a-frame"
+
 <!--
 https://github.com/codecruzer/webgl-shader-loader-js
 https://github.com/MarkusSprunck/webgl-hello-world
+
+https://bugs.chromium.org/p/chromium/issues/detail?id=180632
+http://programmers.stackexchange.com/questions/289857/is-progressive-http-download-a-viable-alternative-to-hls-dash-rtmp-for-providing
+https://en.wikipedia.org/wiki/Dynamic_Adaptive_Streaming_over_HTTP
 -->

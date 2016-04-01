@@ -1,5 +1,5 @@
-// Filename: glsldump_step5.js  
-// Timestamp: 2016.03.31-23:54:20 (last modified)
+// Filename: glsldump_step6.js  
+// Timestamp: 2016.04.01-00:51:08 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
 //
 // Using textures in WebGL
@@ -11,7 +11,7 @@ const glsldump_load = require('./glsldump_load');
 typeof require('sylvester/sylvester.src'),
 typeof require('./glutils');
 
-const glsldump_step5 = module.exports = (o => {
+const glsldump_step6 = module.exports = (o => {
 
   var mvMatrix;
   var vertexPositionAttribute;

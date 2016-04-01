@@ -1,5 +1,5 @@
-// Filename: glsldump_step7.js  
-// Timestamp: 2016.04.01-00:51:14 (last modified)
+// Filename: glsldump_step8.js  
+// Timestamp: 2016.04.01-01:24:50 (last modified)
 // Author(s): bumblehead <chris@bumblehead.com>
 //
 // Lighting in WebGL
@@ -10,8 +10,7 @@ const glsldump_load = require('./glsldump_load');
 typeof require('sylvester/sylvester.src'),
 typeof require('./glutils');
 
-const glsldump_step7 = module.exports = (o => {
-
+const glsldump_step8 = module.exports = (o => {
   var mvMatrix;
   var vertexPositionAttribute;
   //var vertexColorAttribute;
@@ -19,6 +18,8 @@ const glsldump_step7 = module.exports = (o => {
   var vertexNormalAttribute;
   var perspectiveMatrix;
 
+  var intervalID;
+  
   var cubeTexture,
       cubeImage;
 
@@ -38,9 +39,34 @@ const glsldump_step7 = module.exports = (o => {
   // Called when the canvas is created to get the ball rolling.
   // Figuratively, that is. There's nothing moving in this demo.
   //
+  
+  o.setvideo = (parent, startfn, endfn) => {
+    //var videosrc = 'http://d8d913s460fub.cloudfront.net/videoserver/cat-test-video-320x240.mp4',
+        // download from the firefox demo page linked above
+    var videosrc = './src/img/Firefox.ogv',
+        videoelem = document.createElement('video');
+
+    videoelem.crossOrigin = 'anonymous';
+    videoelem.playsinline = 'playsinline';
+    videoelem.width = 640;
+    videoelem.height = 480;
+    videoelem.preload = 'auto';
+    videoelem.src = videosrc;
+    videoelem.style.display = 'none';    
+    videoelem.autoplay = true;
+
+    videoelem.addEventListener("canplaythrough", e => startfn(e, videoelem), true);
+    videoelem.addEventListener("ended", e => endfn(e, videoelem), true);
+        
+    parent.appendChild(videoelem);
+
+    return parent;
+  };
+  
   o.start = canvaselem => {
     var gl = o.initWebGL(canvaselem),
         shaderProgram;
+
     
     if (gl) {
       gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
@@ -79,16 +105,28 @@ const glsldump_step7 = module.exports = (o => {
         gl.enableVertexAttribArray(vertexNormalAttribute);
 
 
-
+    canvaselem = o.setvideo(
+      canvaselem.parentNode,
+      function startfn (e, videoelem) {
+        videoelem.play();
         
         // Here's where we call the routine that builds all the objects
         // we'll be drawing.
         o.initBuffers(gl);
 
         o.initTextures(gl);
+
+        
+        intervalID = setInterval(() => o.drawScene(gl, shaderProgram, videoelem), 15);
+      },
+      function endfn (e, videoelem) {
+        clearInterval(intervalID);
+      }
+    );
+        
         
         // Set up to draw the scene periodically.
-        setInterval(() => o.drawScene(gl, shaderProgram), 15);
+        //setInterval(() => o.drawScene(gl, shaderProgram), 15);
       });
     }
 
@@ -118,6 +156,7 @@ const glsldump_step7 = module.exports = (o => {
     // Create a buffer for the cube's vertices.
 
     cubeVerticesNormalBuffer = gl.createBuffer();
+    //gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesNormalBuffer);
     gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesNormalBuffer);
 
     var vertexNormals = [
@@ -317,7 +356,8 @@ const glsldump_step7 = module.exports = (o => {
   //
   // Draw the scene.
   //
-  o.drawScene = (gl, shaderProgram) => {
+  o.drawScene = (gl, shaderProgram, videoelem) => {
+    o.updateTexture(gl, videoelem);
     // Clear the canvas before we start drawing on it.
 
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -472,21 +512,38 @@ const glsldump_step7 = module.exports = (o => {
 
   o.initTextures = (gl) => {
     cubeTexture = gl.createTexture();
-    cubeImage = new Image();
-    cubeImage.onload = () => {
-      o.handleTextureLoaded(gl, cubeImage, cubeTexture);
-    };
-    cubeImage.src = './src/img/cubetexture.png';
+    /*
+    gl.bindTexture(gl.TEXTURE_2D, cubeTexture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);    
+     */
+    //cubeImage = new Image();
+    //cubeImage.onload = () => {
+    //  o.handleTextureLoaded(gl, cubeImage, cubeTexture);
+    //};
+    //cubeImage.src = './src/img/cubetexture.png';
   };
 
-  o.handleTextureLoaded = (gl, image, texture) => {
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
-    gl.generateMipmap(gl.TEXTURE_2D);
-    gl.bindTexture(gl.TEXTURE_2D, null);
-  };
+  //o.handleTextureLoaded = (gl, image, texture) => {
+  //  gl.bindTexture(gl.TEXTURE_2D, texture);
+  //  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+  //  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  //  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+  //  gl.generateMipmap(gl.TEXTURE_2D);
+  //  gl.bindTexture(gl.TEXTURE_2D, null);
+  //};
+  o.updateTexture = (gl, videoelem) => {
+  gl.bindTexture(gl.TEXTURE_2D, cubeTexture);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,
+        gl.UNSIGNED_BYTE, videoelem);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+  gl.generateMipmap(gl.TEXTURE_2D);
+  gl.bindTexture(gl.TEXTURE_2D, null);
+}
   
 
   return o;
