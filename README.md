@@ -1,7 +1,7 @@
 glsldump
 ========
 
-![webgllogo](https://i0.wp.com/www.iontom.com/wp-content/uploads/2014/03/webgl1.png?w=400)
+![webgllogo][30]
 
 dump files for [glsl experimentation.][0]
 
@@ -19,6 +19,9 @@ other,
 
  1. [Mozilla A-frame][20] (npm download for this is _big_)
  2. https://pomax.github.io/bezierinfo/
+
+
+[30]: https://github.com/iambumblehead/glsldump/raw/master/img/2000px-WebGL_Logo.svg.png "glloogo"
 
 ------------------------------------------------
 
