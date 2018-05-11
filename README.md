@@ -1,7 +1,9 @@
 glsldump
 ========
 
+<div style="max-width:200px">
 ![webgllogo][30]
+</div>
 
 dump files for [glsl experimentation.][0]
 

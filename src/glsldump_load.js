@@ -12,16 +12,19 @@
 //
 //   http://www.html5rocks.com/en/tutorials/webgl/shaders/
 //   http://webglfundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html
-
-const superagent = require('superagent');
+//   https://stackoverflow.com/questions/26092600/sending-javascript-variables-to-fragment-shader
 
 const glsldump_load = module.exports = (o => {
+  o.getsource = (path, fn) => {
+    let request = new XMLHttpRequest();
 
-  o.getsource = (path, fn) => (
-    superagent.get(path).type('text').end((err, xhr) => (
-      fn(err, err || xhr.text)
-    ))
-  );
+    request.open('GET', path, true);
+    request.onload = () => {
+      if (request.status >= 200 && request.status < 400)
+        fn(null, request.responseText);
+    };
+    request.send();
+  };
   
   o.getsourcearr = (patharr, fn, filterfn, sourcearr = []) => {
     if (patharr.length) {

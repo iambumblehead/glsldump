@@ -6,7 +6,7 @@
   "license": "MIT",
   "description": "glsldump",
   "scripts": {
-    "test": "jasmine --verbose test/",
+    "test": "jasmine",
     "start": "NODE_ENV=development node ./express.js"
   },
   "keywords": [
@@ -14,13 +14,12 @@
   ],
   "devDependencies": {
     "jasmine": "^2.5.3",
-    "jasmine-spec-reporter": "3.2.0",
+    "jasmine-spec-reporter": "4.2.1",
     "express": "^4.16.2",
     "scroungejs": "^1.4.7",
     "gl": "^4.0.4"
   },
   "dependencies": {
-    "superagent": "^1.8.3",
     "node-fs": "^0.1.7",
     "recursive-copy": "^2.0.6"
   }

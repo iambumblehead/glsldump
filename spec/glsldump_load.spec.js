@@ -6,7 +6,7 @@ const glsldump_load = require('../src/glsldump_load'),
       glcreate = require('gl'),
       fs = require('fs');
 
-const test_fragpath = './test/shader/test1.frag';
+const test_fragpath = './spec/shader/test1.frag';
 
 describe("glsldump_load.getshader", () => {
   it("should return a fragment shader", () => {
