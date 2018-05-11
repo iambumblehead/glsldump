@@ -21,7 +21,7 @@ other,
  2. https://pomax.github.io/bezierinfo/
 
 
-[30]: https://github.com/iambumblehead/glsldump/raw/master/img/2000px-WebGL_Logo.svg.png "glloogo"
+[30]: https://github.com/iambumblehead/glsldump/raw/master/src/img/2000px-WebGL_Logo.svg.png "glloogo"
 
 ------------------------------------------------
 
