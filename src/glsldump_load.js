@@ -13,8 +13,7 @@
 //   http://www.html5rocks.com/en/tutorials/webgl/shaders/
 //   http://webglfundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html
 
-const superagent = require('superagent'),
-      rxjs = require('rxjs');
+const superagent = require('superagent');
 
 const glsldump_load = module.exports = (o => {
 

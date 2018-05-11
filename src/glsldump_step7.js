@@ -7,9 +7,6 @@
 
 const glsldump_load = require('./glsldump_load');
 
-typeof require('sylvester/sylvester.src'),
-typeof require('./glutils');
-
 const glsldump_step7 = module.exports = (o => {
 
   var mvMatrix;
@@ -52,8 +49,8 @@ const glsldump_step7 = module.exports = (o => {
       // Initialize the shaders; this is where all the lighting for the
       // vertices and so forth is established.      
       glsldump_load.getshaderarr(gl, [
-        './src/shader/step7.frag',
-        './src/shader/step7.vert'
+        './shader/step7.frag',
+        './shader/step7.vert'
       ], (err, [fragshader, vertshader]) => {
         shaderProgram = gl.createProgram();
         gl.attachShader(shaderProgram, vertshader);
@@ -476,7 +473,7 @@ const glsldump_step7 = module.exports = (o => {
     cubeImage.onload = () => {
       o.handleTextureLoaded(gl, cubeImage, cubeTexture);
     };
-    cubeImage.src = './src/img/cubetexture.png';
+    cubeImage.src = './img/cubetexture.png';
   };
 
   o.handleTextureLoaded = (gl, image, texture) => {

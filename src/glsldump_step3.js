@@ -7,9 +7,6 @@
 
 const glsldump_load = require('./glsldump_load');
 
-typeof require('sylvester/sylvester.src'),
-typeof require('./glutils');
-
 const glsldump_step3 = module.exports = (o => {
   var squareVerticesColorBuffer;
   var squareVerticesBuffer;
@@ -32,8 +29,8 @@ const glsldump_step3 = module.exports = (o => {
       // Initialize the shaders; this is where all the lighting for the
       // vertices and so forth is established.      
       glsldump_load.getshaderarr(gl, [
-        './src/shader/step3.frag',
-        './src/shader/step3.vert'
+        './shader/step3.frag',
+        './shader/step3.vert'
       ], (err, [fragshader, vertshader]) => {
         shaderProgram = gl.createProgram();
         gl.attachShader(shaderProgram, vertshader);

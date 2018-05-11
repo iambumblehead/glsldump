@@ -3,7 +3,7 @@ glsldump
 
 ![webgllogo](https://i0.wp.com/www.iontom.com/wp-content/uploads/2014/03/webgl1.png?w=400)
 
-dump files for [glsl experimentation][0].
+dump files for [glsl experimentation.][0]
 
  1. [Getting Started][4]
  2. [Adding 2D content to a WebGL context][5]

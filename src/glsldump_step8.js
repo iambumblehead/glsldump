@@ -7,9 +7,6 @@
 
 const glsldump_load = require('./glsldump_load');
 
-typeof require('sylvester/sylvester.src'),
-typeof require('./glutils');
-
 const glsldump_step8 = module.exports = (o => {
   var mvMatrix;
   var vertexPositionAttribute;
@@ -43,7 +40,7 @@ const glsldump_step8 = module.exports = (o => {
   o.setvideo = (parent, startfn, endfn) => {
     //var videosrc = 'http://d8d913s460fub.cloudfront.net/videoserver/cat-test-video-320x240.mp4',
         // download from the firefox demo page linked above
-    var videosrc = './src/img/Firefox.ogv',
+    var videosrc = './video/test-2048x1024.mp4',
         videoelem = document.createElement('video');
 
     videoelem.crossOrigin = 'anonymous';
@@ -78,8 +75,8 @@ const glsldump_step8 = module.exports = (o => {
       // Initialize the shaders; this is where all the lighting for the
       // vertices and so forth is established.      
       glsldump_load.getshaderarr(gl, [
-        './src/shader/step7.frag',
-        './src/shader/step7.vert'
+        './shader/step7.frag',
+        './shader/step7.vert'
       ], (err, [fragshader, vertshader]) => {
         shaderProgram = gl.createProgram();
         gl.attachShader(shaderProgram, vertshader);
@@ -118,6 +115,8 @@ const glsldump_step8 = module.exports = (o => {
 
         
         intervalID = setInterval(() => o.drawScene(gl, shaderProgram, videoelem), 15);
+        // console.log({ shaderProgram, videoelem });
+        // o.drawScene(gl, shaderProgram, videoelem);
       },
       function endfn (e, videoelem) {
         clearInterval(intervalID);
@@ -523,7 +522,7 @@ const glsldump_step8 = module.exports = (o => {
     //cubeImage.onload = () => {
     //  o.handleTextureLoaded(gl, cubeImage, cubeTexture);
     //};
-    //cubeImage.src = './src/img/cubetexture.png';
+    //cubeImage.src = './img/cubetexture.png';
   };
 
   //o.handleTextureLoaded = (gl, image, texture) => {
