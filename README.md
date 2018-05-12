@@ -36,7 +36,7 @@ other,
 [31]: https://www.quora.com/Should-I-use-WebGL-to-learn-shader-programming "should I learn webgl?"
 [32]: http://github.com/gfx-rs/gfx
 [33]: http://kvark.github.io/web/gpu/2018/02/10/low-level-gpu-web.html
-[34]: http://kvark.github.io/web/gpu/
+[34]: http://kvark.github.io/ "kvark"
 [35]: https://lists.w3.org/Archives/Public/public-gpu/2017Sep/0015.html
 [36]: https://lists.w3.org/Archives/Public/public-gpu/ "public-gpu"
 
