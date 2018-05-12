@@ -26,10 +26,10 @@ dump files for [glsl experimentation.][0]
 other,
 
  1. [Mozilla A-frame][20] (npm download for this is _big_)
- 2. https://pomax.github.io/bezierinfo/
+ 2. [https://pomax.github.io/bezierinfo/](https://pomax.github.io/bezierinfo/)
  3. [http://acko.net/][1]
  4. [matrix math][2]
- 
+ 5. [great quora answer](https://www.quora.com/What-are-shaders-in-WebGL)
 
 
 [30]: https://github.com/iambumblehead/glsldump/raw/master/src/img/300px-WebGL_Logo.svg.png "gl-logo"
