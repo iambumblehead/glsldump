@@ -1,9 +1,15 @@
 glsldump
 ========
 
-<div style="max-width:200px">
 ![webgllogo][30]
-</div>
+
+Note: the path ahead for WebGL is unclear. There are two or three different future replacemnts being discussed and the general consensus is that current WebGL is lacking and in need of improvement, as seen in [this quora response.][31] A remark on lack of activity around servo's WebGPU implementation [here,](https://github.com/kvark/webgpu-servo)
+
+ * "At this point, since there is no consensus on the shape of the API or even the concrete feature set/programming model, we decided to focus on the low-level graphics abstraction layer ([1][32]) instead of pushing the WebGPU-Servo prototype further. This can change once things clear up a bit."
+
+For more details check [here][34] and [here.][36]
+
+---
 
 dump files for [glsl experimentation.][0]
 
@@ -21,33 +27,18 @@ other,
 
  1. [Mozilla A-frame][20] (npm download for this is _big_)
  2. https://pomax.github.io/bezierinfo/
+ 3. [http://acko.net/][1]
+ 4. [matrix math][2]
+ 
 
 
-[30]: https://github.com/iambumblehead/glsldump/raw/master/src/img/2000px-WebGL_Logo.svg.png "glloogo"
-
-------------------------------------------------
-
-DONE
-
- * xhr load of vert and frag sources
-
-TODO
-
- * create staged x/y animation (2d)
- * identify vert and frag sources dynamically (check for `gl_FragColor` or `gl_Position`
- * mock xhr requests at test directory
- * convert frag loader to use rxjs
-
-------------------------------------------------
-
-Other,
-
- * [http://acko.net/][1]
- * [matrix math][2]
-
-
-![scrounge](https://github.com/iambumblehead/scroungejs/raw/master/img/hand.png) 
-
+[30]: https://github.com/iambumblehead/glsldump/raw/master/src/img/300px-WebGL_Logo.svg.png "gl-logo"
+[31]: https://www.quora.com/Should-I-use-WebGL-to-learn-shader-programming "should I learn webgl?"
+[32]: http://github.com/gfx-rs/gfx
+[33]: http://kvark.github.io/web/gpu/2018/02/10/low-level-gpu-web.html
+[34]: http://kvark.github.io/web/gpu/
+[35]: https://lists.w3.org/Archives/Public/public-gpu/2017Sep/0015.html
+[36]: https://lists.w3.org/Archives/Public/public-gpu/ "public-gpu"
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL "webgl getting started"
 [1]: http://acko.net/ "acko.net"
